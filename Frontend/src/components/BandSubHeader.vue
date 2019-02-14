@@ -9,7 +9,7 @@
         slider-color="yellow"
       >
         <v-tab 
-          :href="`http://localhost:8080/`"
+          :href="`http://localhost:8080/band`"
         >
           전체글
         </v-tab>

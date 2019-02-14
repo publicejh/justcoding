@@ -15,8 +15,27 @@
       ><h2>멤버초대</h2> 
       <!-- <v-spacer></v-spacer>이거 쓰면 공간 벌릴 수 있음 -->
     <div class="text-xs-right">
-      <v-btn outline color="black">링크들어가야함</v-btn>
+      <v-btn outline color="black" @click.stop.prevent="copyTestingCode">링크복사하기</v-btn>
+      
     </div>
+      <v-form>
+      <v-container>
+        <v-layout row wrap>
+  
+          <v-flex>
+            <v-text-field
+              value="http://localhost:8080/invite" 
+              label="아래 링크를 복사하여 멤버를 초대하세요."
+              id="URL"
+              outline
+              readonly
+            ></v-text-field>
+          </v-flex>
+  
+        </v-layout>
+      </v-container>
+    </v-form>
+
 
       </v-container>
      </v-card>
@@ -64,7 +83,27 @@ export default {
         console.log("XXXX")
         console.log(this.members);
       });
-  
+
+
+    },
+
+
+    methods: {
+        copyTestingCode () {
+          let testingCodeToCopy = document.querySelector('#URL')
+          testingCodeToCopy.setAttribute('type', 'text') 
+          testingCodeToCopy.select()
+
+          try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            alert('링크가 복사되었습니다.');
+          } catch (err) {
+            alert('링크복사 실패');
+          }
+          testingCodeToCopy.setAttribute('type', 'text')
+          window.getSelection().removeAllRanges()
+        },
     },
     
 }
