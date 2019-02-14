@@ -29,3 +29,8 @@ class MemberList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = BandMemberSerializer
 
+
+class BandCreate(generics.CreateAPIView):
+    queryset = Band
+    serializer_class = BandSerializer
+

@@ -39,11 +39,6 @@ class CommentCreate(generics.CreateAPIView):
     queryset = Comment
     serializer_class = CommentSerializer
 
-
-
-
-
-
     # def post_new(self, request):
     #     if request.method == 'POST':
     #         serializer = PostSerializer(post, data=request.data, context={'request': request})
@@ -86,9 +81,6 @@ class CommentCreate(generics.CreateAPIView):
 #         content = self.request_json['content']
 
 
-
-
-
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     # class PostDetail(generics.RetrieveAPIView):
     queryset = models.Post.objects.all()
@@ -108,20 +100,6 @@ class FileView(APIView):
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
-
-# def comment_new(request, pk):
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.post = Post.objects.get(pk=pk)
-#             comment.save()
-#             return redirect('views.post_detail', pk)
-#         else:
-#             form = CommentForm()
-#         return render(request, 'post_form.html', {'form' : form})
 
 # class CommentListView(generics.ListAPIView):
 #
