@@ -1,20 +1,8 @@
 <template>
-  <div id="container">
-    <div>
+  <div>
       <band-header></band-header>
       <band-sub-header></band-sub-header>
-    </div>
-    <div>
-    <div class="left">
-      <band-left-info></band-left-info>
-    </div>
-    <div>
-      <band-member></band-member>
-    </div>
-    </div>
-      
-      
-      
+      <band-gallery></band-gallery>
   </div>
 </template>
 
@@ -23,21 +11,14 @@ import BandHeader from './BandHeader.vue';
 import BandSubHeaderVue from './BandSubHeader.vue';
 import BandContents from './BandContents.vue';
 import BandMemberVue from './BandMember.vue';
-import BandLeftInfoVue from './BandLeftInfo.vue'
+import BandGallery from './BandGallery.vue';
 export default {
   components: {
     'BandHeader' : BandHeader,
     'BandSubHeader' : BandSubHeaderVue, 
     'BandContents' : BandContents,
     'BandMember' : BandMemberVue,
-    'BandLeftInfo' : BandLeftInfoVue,
+    'BandGallery' : BandGallery
   }
 }
 </script>
-
-<<style>
-  .left{
-    float: left;
-    margin : auto;
-  }
-</style>

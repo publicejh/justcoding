@@ -9,7 +9,7 @@
       <band-left-info></band-left-info>
     </div>
     <div>
-      <band-member></band-member>
+      <bnad-invite></bnad-invite>
     </div>
     </div>
       
@@ -24,6 +24,7 @@ import BandSubHeaderVue from './BandSubHeader.vue';
 import BandContents from './BandContents.vue';
 import BandMemberVue from './BandMember.vue';
 import BandLeftInfoVue from './BandLeftInfo.vue'
+import BnadInvite from './BandInvite.vue'
 export default {
   components: {
     'BandHeader' : BandHeader,
@@ -31,6 +32,7 @@ export default {
     'BandContents' : BandContents,
     'BandMember' : BandMemberVue,
     'BandLeftInfo' : BandLeftInfoVue,
+    'BnadInvite' : BnadInvite,
   }
 }
 </script>

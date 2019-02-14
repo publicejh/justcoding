@@ -12,61 +12,18 @@
         class ="container"
         fluid
         grid-list-lg
-      ><h2>멤버 <span class="membernum">3</span></h2> 
+      ><h2>멤버초대</h2> 
       <!-- <v-spacer></v-spacer>이거 쓰면 공간 벌릴 수 있음 -->
     <div class="text-xs-right">
-      <v-btn outline color="black"  onclick="location.href=`http://localhost:8080/invite`">멤버 초대하기</v-btn>
+      <v-btn outline color="black">링크들어가야함</v-btn>
     </div>
 
       </v-container>
      </v-card>
  
 
-    <div>
-      <v-toolbar
-        color="#FFF59D"
-        tabs
-      >
-        <v-text-field
-        class="search"
-          flat
-          label="멤버 검색"
-          prepend-inner-icon="search"
-        ></v-text-field>
-      </v-toolbar>
-    </div>
-
-    <hr class="one">
 
 
-<v-layout row>
-    <v-flex xs12 >
-      <v-card>
-        
-        <v-list subheader>
-          <v-subheader>멤버</v-subheader>
-          <v-list-tile
-            v-for="item in items"
-            :key="item.title"
-            avatar
-          > 
-          <!-- @click="" 위에 이거 넣자-->
-            <v-list-tile-avatar>
-              <img :src="item.avatar">
-            </v-list-tile-avatar>
-
-            <v-list-tile-content>
-              <v-list-tile-title v-html="item.title"></v-list-tile-title>
-            </v-list-tile-content>
-
-            <v-list-tile-action>
-              <v-icon :color="item.active ? 'orange' : 'grey'">chat_bubble</v-icon>
-            </v-list-tile-action>
-          </v-list-tile>
-        </v-list>
-      </v-card>
-    </v-flex>
-  </v-layout>
     
 
 

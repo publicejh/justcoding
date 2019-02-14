@@ -14,10 +14,11 @@
           전체글
         </v-tab>
         <v-tab
-          :href="`#`"
+          :href="`http://localhost:8080/gallery`"
         >
           사진첩
         </v-tab>
+
         <v-tab
           :href="`http://localhost:8080/member`"
         >

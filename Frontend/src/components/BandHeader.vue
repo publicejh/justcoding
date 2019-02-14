@@ -4,7 +4,12 @@
     dark
     class="user_info"
   >
-    <v-toolbar-title ><img style="padding:10px 0px 0px 0px;" src="src/assets/sig_logo.png" width="100" height="80" href="#"></v-toolbar-title>
+    <v-toolbar-title >
+      <a  href="http://localhost:8080/">
+      <img style="padding:10px 0px 0px 0px;" src="src/assets/sig_logo.png" width="100" height="80">
+      </a>
+      
+      </v-toolbar-title>
 
     <v-divider
       class="mx-3"
