@@ -18,7 +18,7 @@ from .forms import CommentForm
 
 class PostList(generics.ListAPIView):
 
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-id')
     serializer_class = PostSerializer
 
 
@@ -38,6 +38,8 @@ class PostCreateList(generics.CreateAPIView):
 class CommentCreate(generics.CreateAPIView):
     queryset = Comment
     serializer_class = CommentSerializer
+
+
 
 
 
