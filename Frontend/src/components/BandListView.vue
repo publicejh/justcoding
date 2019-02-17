@@ -60,6 +60,8 @@
 
 <script>
 import axios from "axios";
+import { PLATFORM_SERVER_HOST_URL } from "../settings"
+
   export default {
     data: () => ({
       value: 4.5,
@@ -67,12 +69,14 @@ import axios from "axios";
     }),
       
     created() {
-      axios.get("http://127.0.0.1:8000/band/").then(result => {
+      axios.get(`${PLATFORM_SERVER_HOST_URL}/band/`).then(result => {
   
-        console.log(result);
+        console.log('xxxx: ', result);
         this.bands = result.data;
         console.log(this.bands);
-      });
+      }).catch((e)=>{
+        console.log(e)
+      })
   
     },
   }

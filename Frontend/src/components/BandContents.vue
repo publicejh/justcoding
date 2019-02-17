@@ -151,6 +151,7 @@
 <script>
   import axios from "axios";
   import UploadButton from "vuetify-upload-button";
+  import { PLATFORM_SERVER_HOST_URL } from "../settings"
  
   export default {
     components: {
@@ -178,7 +179,7 @@
   
     created() {
   
-      axios.get("http://127.0.0.1:8000/post/").then(result => {
+      axios.get(`${PLATFORM_SERVER_HOST_URL}/post/`).then(result => {
   
         console.log(result);
         this.posts = result.data;
@@ -195,7 +196,7 @@
   
         axios
   
-          .post(`http://127.0.0.1:8000/post/create/`, {
+          .post(`${PLATFORM_SERVER_HOST_URL}/post/create/`, {
             title: this.postTitle,
             content: this.postBody,
             band_id: 1,
@@ -215,7 +216,7 @@
   
       createComment(post_id) {
         axios
-          .post(`http://127.0.0.1:8000/post/comments/create`, {
+          .post(`${PLATFORM_SERVER_HOST_URL}/post/comments/create`, {
             message: this.CommentCreateMsg,
             author: 1,
             post: post_id
@@ -281,7 +282,7 @@
     // }
   
     // mounted(){
-    //   axios.get('http://127.0.0.1:8000/api/'+result.id+'/comments')
+    //   axios.get(`${PLATFORM_SERVER_HOST_URL}/api/`+result.id+'/comments')
     //   .then((result) => {
     //         console.log(result)
     //         this.comments = result.data
@@ -292,7 +293,7 @@
     //   methods: {
     //   searchTerm: function () {
     //     // using JSONPlaceholder
-    //     const baseURI = 'http://127.0.0.1:8000';
+    //     const baseURI = `${PLATFORM_SERVER_HOST_URL}`;
     //     this.$http.get(`${baseURI}/api`)
     //     .then((result) => {
     //       console.log(result)

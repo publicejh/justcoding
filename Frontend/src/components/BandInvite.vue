@@ -55,6 +55,7 @@
 
 <script>
 import axios from "axios";
+import { PLATFORM_SERVER_HOST_URL } from "../settings"
 export default {
       data: () => ({
         members :[],
@@ -76,7 +77,7 @@ export default {
        
         created() {
   
-      axios.get("http://localhost:8000/band/1/member")
+      axios.get(`${PLATFORM_SERVER_HOST_URL}/band/1/member`)
       .then(result => {
         console.log(result);
         this.members = result.data;

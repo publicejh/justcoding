@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'post',
     'rest_framework',
-    'sig'
+    'sig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -83,11 +85,11 @@ WSGI_APPLICATION = 'band.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sig',
+        'NAME': 'platform_server',
         'USER': 'root',
-        'PASSWORD': '1202',
-        'HOST': '',
-        'POST': '',
+        'PASSWORD': '1dlwjdgh',
+        'HOST': '127.0.0.1',
+        'POST': '3306',
     }
 }
 
@@ -132,3 +134,5 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CORS_ORIGIN_WHITELIST = ('localhost:8080')

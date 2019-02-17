@@ -28,6 +28,7 @@
 
 <script>
 import axios from "axios";
+import { PLATFORM_SERVER_HOST_URL } from "../settings"
 export default {
       data: () => ({
   
@@ -38,7 +39,7 @@ methods: {
   
       bandCreate() {
         axios
-          .post(`http://127.0.0.1:8000/band/create/`, {
+          .post(`${PLATFORM_SERVER_HOST_URL}/band/create/`, {
             band_name: this.bandtitle,
             band_leader : 1, 
             //image : this.ImageUpload,
