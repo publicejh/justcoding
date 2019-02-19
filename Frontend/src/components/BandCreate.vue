@@ -41,7 +41,7 @@ methods: {
         axios
           .post(`${PLATFORM_SERVER_HOST_URL}/band/create/`, {
             band_name: this.bandtitle,
-            band_leader : 1, 
+            band_leader : this.$store.getters.user.userId, 
             //image : this.ImageUpload,
           })
   

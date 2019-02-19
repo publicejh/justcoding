@@ -1,5 +1,6 @@
 import { AUTH_SERVER_HOST_URL } from "@/settings";
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
 const AuthModule = {
   state: {
@@ -42,10 +43,11 @@ const AuthModule = {
         password2: payload.password2,
       }).then(res => {
           commit('setLoading', false)
-          console.log('xxxxxx: ', res)
           localStorage.setItem("token", res.data.token);
+          const decoded = jwt_decode(res.data.token)
           const newUser = {
-            username: payload.username
+            userId: decoded.user_id,
+            username: decoded.username,
           }
           commit('setUser', newUser)
       }).catch((ex)=>{
@@ -65,10 +67,11 @@ const AuthModule = {
         password: payload.password
       }).then(res => {
           commit('setLoading', false)
-          console.log('xxxxxx: ', res)
           localStorage.setItem("token", res.data.token);
+          const decoded = jwt_decode(res.data.token)
           const newUser = {
-            username: payload.username
+            userId: decoded.user_id,
+            username: decoded.username,
           }
           commit('setUser', newUser)
       }).catch((ex)=>{

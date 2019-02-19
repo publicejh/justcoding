@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
 from rest_framework.parsers import MultiPartParser, FormParser
-from post import models, serializers
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 from rest_framework import status
@@ -17,9 +16,13 @@ from .forms import CommentForm
 
 
 class PostList(generics.ListAPIView):
-
-    queryset = Post.objects.all().order_by('-id')
+    # queryset = Post.objects.all().order_by('-id')
     serializer_class = PostSerializer
+
+    def get_queryset(self, **kwargs):
+        band_id = self.request.query_params.get('bandId', None)
+        queryset = Post.objects.filter(band_id=band_id)
+        return queryset.order_by('-id')
 
 
 class PostCreateList(generics.CreateAPIView):
@@ -83,8 +86,8 @@ class CommentCreate(generics.CreateAPIView):
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     # class PostDetail(generics.RetrieveAPIView):
-    queryset = models.Post.objects.all()
-    serializer_class = serializers.PostSerializer
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
     def CommentView(self):
         comment = get_object_or_404(Comment, )
 
@@ -114,7 +117,7 @@ class FileView(APIView):
 
 
 class CommentView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = models.Comment.objects.all()
+    queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
 

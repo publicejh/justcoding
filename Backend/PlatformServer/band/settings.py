@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'band.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'platform_server',
+        'NAME': 'justcoding_merge',
         'USER': 'root',
         'PASSWORD': '1dlwjdgh',
         'HOST': '127.0.0.1',
@@ -124,7 +124,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

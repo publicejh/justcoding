@@ -175,12 +175,18 @@
 
      }),
 
-
+    props: [
+      'bandId'
+    ],
   
     created() {
+      console.log('yyyy: ', this.bandId)
   
-      axios.get(`${PLATFORM_SERVER_HOST_URL}/post/`).then(result => {
-  
+      axios.get(`${PLATFORM_SERVER_HOST_URL}/post/`,{
+        params: {
+          bandId: this.bandId
+        }
+      }).then(result => {
         console.log(result);
         this.posts = result.data;
         console.log(this.posts);
@@ -199,8 +205,8 @@
           .post(`${PLATFORM_SERVER_HOST_URL}/post/create/`, {
             title: this.postTitle,
             content: this.postBody,
-            band_id: 1,
-            author: 1,
+            band_id: this.bandId,
+            author: this.$store.getters.user.userId,
             //image : this.ImageUpload,
           })
   
@@ -218,7 +224,7 @@
         axios
           .post(`${PLATFORM_SERVER_HOST_URL}/post/comments/create`, {
             message: this.CommentCreateMsg,
-            author: 1,
+            author: this.$store.getters.user.userId,
             post: post_id
           })
           .then(response => {})

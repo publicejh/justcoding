@@ -99,10 +99,15 @@ export default {
         ]
       }
       },
+
+
+    props: [
+      'bandId'
+    ],
        
         created() {
   
-      axios.get(`${PLATFORM_SERVER_HOST_URL}/band/1/member`)
+      axios.get(`${PLATFORM_SERVER_HOST_URL}/band/${this.bandId}/member`)
       .then(result => {
         console.log(result);
         this.members = result.data;

@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'auth_server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'justcoding_auth', # DB명
+        'NAME': 'justcoding_merge', # DB명
         'USER': 'root', # 데이터베이스 계정
         'PASSWORD': '1dlwjdgh', # 계정 비밀번호
         'HOST': '127.0.0.1', # 데이테베이스 주소(IP)

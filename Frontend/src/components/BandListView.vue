@@ -1,30 +1,27 @@
 <template>
 <div>
-     <v-layout row wrap>
-    <a  href="http://localhost:8080/band-create">
-<v-hover>
-    <v-card
-      slot-scope="{ hover }"
-      :class="`elevation-${hover ? 12 : 2}`"
-      width="250"
-      height="250"
-      color="#FFF59D"
-    >
-    
-      <v-card-title>
-        <div style="margin : auto">
-          <span class="headline">밴드만들기</span>
-          <div class="d-flex">
-              <i class="material-icons">add</i>
-          </div>
-        </div>
-        <v-spacer></v-spacer>
-
-      </v-card-title>
-    </v-card>
-  </v-hover>
-    </a>
-  
+  <v-layout row wrap>
+    <router-link to="/band-create" tag="span" style="cursor: pointer">
+      <v-hover>
+        <v-card
+          slot-scope="{ hover }"
+          :class="`elevation-${hover ? 12 : 2}`"
+          width="250"
+          height="250"
+          color="#FFF59D"
+        >
+          <v-card-title>
+            <div style="margin : auto">
+              <span class="headline">밴드만들기</span>
+              <div class="d-flex">
+                  <i class="material-icons">add</i>
+              </div>
+            </div>
+            <v-spacer></v-spacer>
+          </v-card-title>
+        </v-card>
+      </v-hover>
+    </router-link>
 
   <v-flex>
     <v-card
@@ -33,7 +30,7 @@
       width="250"
       height="250"
     >
-        <a  href="http://localhost:8080/band">
+      <router-link :to="/band/ + band.id" tag="span" style="cursor: pointer">
       <v-img
         :aspect-ratio="16/9"
         src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
@@ -50,7 +47,7 @@
         <v-spacer></v-spacer>
 
       </v-card-title>
-      </a>
+      </router-link>
     </v-card>
   </v-flex>
   </v-layout>

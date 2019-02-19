@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<<style>
+<style>
   .left{
     float: left;
     margin : auto;

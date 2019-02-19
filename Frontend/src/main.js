@@ -9,6 +9,7 @@ import axios from 'axios'
 import moment from 'moment'
 import router from './router'
 import PictureInput from 'vue-picture-input'
+
 Vue.use(PictureInput);
 
 Vue.use(Vuetify, {

@@ -37,7 +37,18 @@
         model: 'tab-1',
         text : 'test'
         }
-    }
+    },
+
+    props: [
+      'bandId'
+    ],
+
+    computed: {
+      bandId () {
+        return this.bandId
+      }
+    },
+  
   }
 </script>
 

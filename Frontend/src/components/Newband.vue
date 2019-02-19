@@ -1,16 +1,6 @@
 <template>
-  <div id="container">
-    <div>
-      <band-header></band-header>
-    </div>
-    <div>
-    <div>
-      <band-create></band-create>
-    </div>
-    </div>
-      
-      
-      
+  <div>
+    <band-create></band-create>
   </div>
 </template>
 
