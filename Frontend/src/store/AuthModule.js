@@ -1,4 +1,5 @@
 import { AUTH_SERVER_HOST_URL } from "@/settings";
+import { CHAT_SERVER_HOST_URL } from "@/settings";
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
@@ -61,7 +62,6 @@ const AuthModule = {
       commit('setLoading', true)
       commit('clearError')
 
-      
       axios.post(`${AUTH_SERVER_HOST_URL}/rest-auth/login/`, {
         username: payload.username,
         password: payload.password

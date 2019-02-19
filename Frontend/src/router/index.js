@@ -12,6 +12,8 @@ import Newband from '../components/Newband.vue'
 import BandContents from '../components/BandContents.vue';
 import BandInvite from '../components/BandInvite.vue';
 import AuthGuard from './auth-guard'
+import Chats from '@/components/Chat/Chats'
+import Chat from '@/components/Chat/Chat'
 
 Vue.use(Router)
 
@@ -73,5 +75,17 @@ export default new Router({
       name: 'band-create',
       component: Newband
     },
+    {
+      path: '/chat',
+      name: 'Chats',
+      component: Chats
+    },
+    {
+      path: '/chat/:id',
+      name: 'Chat',
+      component: Chat,
+      props: true
+      // beforeEnter: AuthGuard
+    }
   ]
 })
