@@ -17,6 +17,12 @@ import AuthGuard from './auth-guard';
 // import MypageMenu from '../components/MypageMenu.vue';
 import Logout from '../components/Logout.vue';
 import IsLogined from './is-logined.js'
+import BandContents from '../components/BandContents.vue'
+import BandInvite from '../components/BandInvite.vue'
+import BandInvitationHome from '../components/Band/BandInvitationHome.vue'
+import Chats from '@/components/Chat/Chats'
+import Chat from '@/components/Chat/Chat'
+import AuthGuard from './auth-guard'
 
 Vue.use(Router)
 
@@ -60,9 +66,16 @@ export default new Router({
       children: [
         { path: 'content', component: BandContents },
         { path: 'gallery', component: BandGallery },
-        { path: 'member', component: BandMember },
-        { path: 'invite', component: BandInvite },
+        { path: 'member',  component: BandMember },
+        { path: 'invite',  component: BandInvite },
       ]
+    },
+    
+    {
+      path: '/band/:id/invite',
+      name: 'BandInvite',
+      component: BandInvite,
+      props: true,
     },
     // {
     //   path: '/member',
@@ -74,16 +87,33 @@ export default new Router({
     //   name: 'gallery',
     //   component: Gallery
     // },
+    // {
+    //   path: '/invite',
+    //   name: 'invite',
+    //   component: invite
+    // },
     {
-      path: '/invite',
-      name: 'invite',
-      component: invite
+      path: '/n/:token',
+      name: 'BandInvitationHome',
+      component: BandInvitationHome,
+      beforeEnter: AuthGuard
     },
     {
       path: '/band-create',
       name: 'band-create',
       component: Newband
     },
-
+    {
+      path: '/chat',
+      name: 'Chats',
+      component: Chats
+    },
+    {
+      path: '/chat/:id',
+      name: 'Chat',
+      component: Chat,
+      props: true
+      // beforeEnter: AuthGuard
+    }
   ]
 })

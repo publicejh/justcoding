@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import AuthModule from './AuthModule'
+import SigModule from './SigModule'
+import ChatModule from './ChatModule'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   modules: {
-    auth: AuthModule
+    auth: AuthModule,
+    sig: SigModule,
+    chat: ChatModule
   },
   state: {
     loading: false,

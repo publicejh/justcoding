@@ -1,9 +1,14 @@
 from django.urls import path, include
-from . import views
+from .views import BandList, BandDetail, BandMemberDetail, BandCreate, BandParticipateCreateView,\
+    BandParticipateListView, BandInvitationTokenCreateView, BandInvitationTokenRetrieveView
 
 urlpatterns = [
-    path('', views.BandList.as_view()),
-    path('<int:pk>/', views.BandDetail.as_view()),
-    path('<int:pk>/member', views.BandMemberDetail.as_view()),
-    path('create/', views.BandCreate.as_view()),
+    path('', BandList.as_view()),
+    path('<int:pk>/', BandDetail.as_view()),
+    # path('<int:pk>/member', BandMemberDetail.as_view()),
+    path('create/', BandCreate.as_view()),
+    path('<int:band_id>/invite/', BandParticipateCreateView.as_view()),
+    path('<int:band_id>/member/', BandParticipateListView.as_view()),
+    path('<int:band_id>/invitation-token/', BandInvitationTokenCreateView.as_view()),
+    path('n/<token>', BandInvitationTokenRetrieveView.as_view()),
 ]

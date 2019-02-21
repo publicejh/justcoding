@@ -9,6 +9,8 @@ urlpatterns = [
     path('upload/', FileView.as_view(), name='file-upload'),
     path('create/', views.PostCreateList.as_view()),
     path('comments/create', views.CommentCreate.as_view()),
+    path('delete/<int:pk>/', views.PostDestroy.as_view()),
+    path('update/<int:pk>/', views.PostUpdate.as_view()),
     #path('<int:pk>/comments/', views.CommentView.as_view())
     #path('', include(router.urls)),
 ]

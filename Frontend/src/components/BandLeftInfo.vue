@@ -13,13 +13,12 @@
           <v-card-title primary-title>
             <div>
               <div class="headline">{{bandName}}</div>
-              <span class="grey--text">멤버수 : 3</span>
+              <span class="grey--text">멤버수 : {{memberCnt}}</span>
             </div>
           </v-card-title>
   
           <v-card-actions>
-            <!--<v-btn  color="#FFCC80" onclick="location.href=`http://localhost:8080/invite`">멤버초대하기</v-btn>-->
-            <v-btn  color="#FFCC80" :to="bandID + /invite/">멤버초대하기</v-btn>
+            <v-btn  color="#FFCC80" :to="bandid + /invite/">멤버초대하기</v-btn>
             <v-spacer></v-spacer>
 
           </v-card-actions>
@@ -47,29 +46,19 @@
     },
 
     props: [
-      'bandId'
+      'bandid'
     ],
 
     created() {
-      console.log('zzzzz: ', this.bandID)
 
-      axios.get(`${PLATFORM_SERVER_HOST_URL}/band/${this.bandId}`).then(result => {
+      axios.get(`${PLATFORM_SERVER_HOST_URL}/band/${this.bandid}`).then(result => {
         this.bandName = result.data.band_name;
-        // this.memberCnt = result.data;
+        this.memberCnt = result.data.members.length;
 
       }).catch((e)=>{
-        console.log(e)
+        console.log('errrrr: ', e)
       })
       
-    },
-
-    computed: {
-      bandId () {
-        return this.bandId
-      },
-      bandName () {
-        return this.bandName
-      }
     },
   }
 </script>

@@ -37,18 +37,21 @@ class PostCreateList(generics.CreateAPIView):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class PostDestroy(generics.DestroyAPIView):
+    queryset = Post
+    serializer_class = PostSerializer
+
+
+class PostUpdate(generics.UpdateAPIView):
+    queryset = Post
+    serializer_class = PostSerializer
+
 
 class CommentCreate(generics.CreateAPIView):
     queryset = Comment
     serializer_class = CommentSerializer
 
-    # def post_new(self, request):
-    #     if request.method == 'POST':
-    #         serializer = PostSerializer(post, data=request.data, context={'request': request})
-    #         if serializer.is_valid():
-    #             serializer.save()
-    #             return Response(serializer.data)
-    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 # @api_view(['GET', 'POST', 'DELETE'])

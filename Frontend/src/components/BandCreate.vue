@@ -15,7 +15,7 @@
             ></v-text-field>
           </v-flex>
         <div style="float:right;">
-           <v-btn color="orange" flat @click="dialog = false">취소</v-btn>
+           <v-btn color="orange" flat a href="http://localhost:8080/#/">취소</v-btn>
            <v-btn color="orange" flat v-on:click="bandCreate">완료</v-btn>
         </div>
      
