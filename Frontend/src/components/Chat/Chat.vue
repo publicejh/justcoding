@@ -1,7 +1,7 @@
 <template>
   <v-flex style="position: relative;">
     <div class="chat-container" v-on:scroll="onScroll" ref="chatContainer" >
-      <message :messages="messages" @imageLoad="scrollToEnd"></message>
+      <message :username="username" :messages="messages" @imageLoad="scrollToEnd"></message>
     </div>
     <emoji-picker :show="emojiPanel" @close="toggleEmojiPanel" @click="addMessage"></emoji-picker>
     <div class="typer">
@@ -47,7 +47,6 @@
         return this.chatMessages
       },
       username () {
-        // return this.$store.getters.user.username
         return localStorage.getItem("username")
       },
       onChildAdded () {

@@ -50,6 +50,7 @@ const AuthModule = {
             userId: decoded.user_id,
             username: decoded.username,
           }
+          localStorage.setItem("username", decoded.username);
           commit('setUser', newUser)
       }).catch((ex)=>{
         console.log(ex)
@@ -73,6 +74,7 @@ const AuthModule = {
             userId: decoded.user_id,
             username: decoded.username,
           }
+          localStorage.setItem("username", decoded.username);
           commit('setUser', newUser)
       }).catch((ex)=>{
         console.log(ex)

@@ -9,11 +9,12 @@ import BandGallery from '../components/BandGallery.vue'
 import invite from '../components/invite.vue'
 import Home from '../components/Home.vue'
 import Newband from '../components/Newband.vue'
-import BandContents from '../components/BandContents.vue';
-import BandInvite from '../components/BandInvite.vue';
-import AuthGuard from './auth-guard'
+import BandContents from '../components/BandContents.vue'
+import BandInvite from '../components/BandInvite.vue'
+import BandInvitationHome from '../components/Band/BandInvitationHome.vue'
 import Chats from '@/components/Chat/Chats'
 import Chat from '@/components/Chat/Chat'
+import AuthGuard from './auth-guard'
 
 Vue.use(Router)
 
@@ -65,10 +66,16 @@ export default new Router({
     //   name: 'gallery',
     //   component: Gallery
     // },
+    // {
+    //   path: '/invite',
+    //   name: 'invite',
+    //   component: invite
+    // },
     {
-      path: '/invite',
-      name: 'invite',
-      component: invite
+      path: '/n/:token',
+      name: 'BandInvitationHome',
+      component: BandInvitationHome,
+      beforeEnter: AuthGuard
     },
     {
       path: '/band-create',

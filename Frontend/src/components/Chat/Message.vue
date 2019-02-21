@@ -20,16 +20,12 @@
       return {}
     },
     props: [
+      'username',
       'messages'
     ],
+    
     components: {
     //   'chat-image': Image
-    },
-    computed: {
-      username () {
-        // return this.$store.getters.user.username
-        return localStorage.getItem("username")
-      }
     },
     methods: {
       imageLoad () {

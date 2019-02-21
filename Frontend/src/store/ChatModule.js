@@ -32,11 +32,24 @@ const ChatModule = {
       };
       WebSocketInstance.newChatMessage(messageObject);
     },
+
+    createChat ({commit}, payload) {
+
+      axios.post(`${CHAT_SERVER_HOST_URL}/chat/create/`, {
+        band: payload.bandId,
+        participants: payload.participants
+      }).then(res => {
+        console.log('chat created: ', res.data)
+      }).catch((ex)=>{
+        console.log(ex)
+      })
+    },
+
     loadChats ({commit}) {
         axios({
             method: 'GET',
             url: `${CHAT_SERVER_HOST_URL}/chat/`,
-            params: { username: this.getters.user.username}
+            params: { username: this.getters.user.username, band_id: this.getters.sigId}
         })
         .then((response) => {
             commit('setChats', response.data)

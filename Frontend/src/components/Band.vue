@@ -11,11 +11,15 @@
 
     <!--<band-sub-header :bandId="bandId"></band-sub-header>-->
     <div class="left">
-      <band-left-info :bandId="bandId"></band-left-info>
+      <!--<band-left-info :bandId="bandId"></band-left-info>-->
+      <band-left-info v-bind:bandid="id"></band-left-info>
     </div>
     <div>
-      <router-view :bandId="bandId"></router-view>
+      <router-view :bandId="id"></router-view>
       <!--<band-contents :bandId="bandId"></band-contents>-->
+    </div>
+    <div style="max-width: 20%; display: inline-block; margin: auto; padding: 10px">
+        <chats></chats>
     </div>
   </div>
 </template>
@@ -26,6 +30,7 @@
   import BandContents from './BandContents.vue';
   import BandMemberVue from './BandMember.vue';
   import BandLeftInfoVue from './BandLeftInfo.vue';
+  import Chats from './Chat/Chats.vue';
 
   export default {
     components: {
@@ -34,6 +39,7 @@
       'BandContents' : BandContents,
       'BandMember' : BandMemberVue,
       'BandLeftInfo' : BandLeftInfoVue,
+      'Chats' : Chats,
     },
 
     data () {
@@ -45,11 +51,18 @@
       'id'
     ],
 
-    computed: {
+    created() {
+      this.$store.dispatch('setSig', this.id)
+    },
 
-      bandId () {
-        return this.id
-      },
+    mounted() {
+      this.$store.dispatch('loadSigMembers')
+    },
+
+    computed: {
+      // id () {
+      //   return this.id
+      // },
       menuItems () {
         let items = [
           { title: '전체글', route: `${this.id}/content` },

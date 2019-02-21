@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from sig.models import Band
 
 User = get_user_model()
 
@@ -24,6 +25,7 @@ class Message(models.Model):
 
 
 class Chat(models.Model):
+    band = models.ForeignKey(Band, on_delete=models.CASCADE)
     participants = models.ManyToManyField(
         Contact, related_name='chats', blank=True)
     messages = models.ManyToManyField(Message, blank=True)

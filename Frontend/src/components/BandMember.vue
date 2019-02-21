@@ -6,6 +6,7 @@
     class="grey lighten-3"
     center
   >
+  <!--
   <div>
      <v-card>
       <v-container
@@ -13,7 +14,6 @@
         fluid
         grid-list-lg
       ><h2>멤버 <span class="membernum">3</span></h2> 
-      <!-- <v-spacer></v-spacer>이거 쓰면 공간 벌릴 수 있음 -->
     <div class="text-xs-right">
       <v-btn outline color="black"  onclick="location.href=`http://localhost:8080/invite`">멤버 초대하기</v-btn>
     </div>
@@ -37,7 +37,7 @@
     </div>
 
     <hr class="one">
-
+  -->
 
 <v-layout row>
     <v-flex xs12 >
@@ -46,21 +46,21 @@
         <v-list subheader>
           <v-subheader>멤버</v-subheader>
           <v-list-tile
-            v-for="item in items"
-            :key="item.title"
+            v-for="member in members"
+            :key="member.username"
             avatar
           > 
           <!-- @click="" 위에 이거 넣자-->
             <v-list-tile-avatar>
-              <img :src="item.avatar">
+              <img :src="member.avatar">
             </v-list-tile-avatar>
 
             <v-list-tile-content>
-              <v-list-tile-title v-html="item.title"></v-list-tile-title>
+              <v-list-tile-title v-html="member.username"></v-list-tile-title>
             </v-list-tile-content>
 
             <v-list-tile-action>
-              <v-icon :color="item.active ? 'orange' : 'grey'">chat_bubble</v-icon>
+              <v-icon :color="member.active ? 'orange' : 'grey'">chat_bubble</v-icon>
             </v-list-tile-action>
           </v-list-tile>
         </v-list>
@@ -82,41 +82,37 @@ import axios from "axios";
 import { PLATFORM_SERVER_HOST_URL } from "../settings"
 
 export default {
-      data: () => ({
-        members :[],
-      }),
       data(){
           
         return {
-        items: [
-          { active: true, title: 'Jason Oner', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-          { active: true, title: 'Ranee Carlson', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' },
-          { title: 'Cindy Baker', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' },
-          { title: 'Ali Connors', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }
-        ],
-        items2: [
-          { title: 'Travis Howard', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }
-        ]
-      }
+          members :[],
+          items2: [
+            { active: true, title: 'Jason Oner', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
+            { active: true, title: 'Ranee Carlson', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' },
+            { title: 'Cindy Baker', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' },
+            { title: 'Ali Connors', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }
+          ],
+          items: []
+        }
       },
-
 
     props: [
       'bandId'
     ],
        
-        created() {
-  
+    created() {
       axios.get(`${PLATFORM_SERVER_HOST_URL}/band/${this.bandId}/member`)
       .then(result => {
-        console.log(result);
         this.members = result.data;
         console.log("XXXX")
         console.log(this.members);
+
+        // this.members.forEach(function (member) {
+        //   tempArray.push(item)
+        // })
       });
-  
     },
-    
+
 }
 </script>
 

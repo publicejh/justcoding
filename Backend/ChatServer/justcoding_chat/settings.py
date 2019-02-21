@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 
     'rest_auth',
     'rest_framework.authtoken',
+
+    'sig',
 ]
 
 MIDDLEWARE = [
@@ -98,7 +100,7 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'justcoding', # DB명
+        'NAME': 'justcoding_merge', # DB명
         'USER': 'root', # 데이터베이스 계정
         'PASSWORD': '1dlwjdgh', # 계정 비밀번호
         'HOST': '127.0.0.1', # 데이테베이스 주소(IP)
