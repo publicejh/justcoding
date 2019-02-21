@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'justcoding_merge', # DB명
         'USER': 'root', # 데이터베이스 계정
-        'PASSWORD': '1dlwjdgh', # 계정 비밀번호
+        'PASSWORD': '9699', # 계정 비밀번호
         'HOST': '127.0.0.1', # 데이테베이스 주소(IP)
         'PORT': '3306', # 데이터베이스 포트(보통은 3306)
     }

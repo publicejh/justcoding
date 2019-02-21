@@ -11,7 +11,12 @@ import Home from '../components/Home.vue'
 import Newband from '../components/Newband.vue'
 import BandContents from '../components/BandContents.vue';
 import BandInvite from '../components/BandInvite.vue';
-import AuthGuard from './auth-guard'
+import AuthGuard from './auth-guard';
+// import Mypage from '../components/Mypage.vue';
+// import MypageContents from '../components/MypageContents.vue';
+// import MypageMenu from '../components/MypageMenu.vue';
+import Logout from '../components/Logout.vue';
+import IsLogined from './is-logined.js'
 
 Vue.use(Router)
 
@@ -37,6 +42,12 @@ export default new Router({
       path: '/signup',
       name: 'Signup',
       component: Signup
+    },
+    {
+      path: '/logout',
+      name: 'Logout',
+      component: Logout,
+      beforeEnter: IsLogined
     },
     {
       path: '/band/:id',
@@ -73,5 +84,6 @@ export default new Router({
       name: 'band-create',
       component: Newband
     },
+
   ]
 })

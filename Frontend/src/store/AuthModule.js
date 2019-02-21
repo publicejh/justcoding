@@ -61,7 +61,7 @@ const AuthModule = {
       commit('setLoading', true)
       commit('clearError')
 
-      
+
       axios.post(`${AUTH_SERVER_HOST_URL}/rest-auth/login/`, {
         username: payload.username,
         password: payload.password
@@ -79,6 +79,15 @@ const AuthModule = {
         commit('setLoading', false)
         commit('setError', ex)
       })
+    },
+    //로그아웃
+    signUserout ({commit}, payload) {
+      commit('setLoading', true)
+      commit('clearError')
+
+      // axios.post(`${AUTH_SERVER_HOST_URL}/rest-auth/logout/`, {
+      //   //여기
+      // }
     }
   },
   getters: {
