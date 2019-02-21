@@ -1,4 +1,6 @@
 <template>
+    <div id="app">
+
 
  <div
     id="e3"
@@ -13,9 +15,9 @@
         class ="container"
         fluid
         grid-list-lg
-      ><h2>멤버 <span class="membernum">3</span></h2> 
+      ><h2>멤버 <span class="membernum">3</span></h2>
     <div class="text-xs-right">
-      <v-btn outline color="black"  onclick="location.href=`http://localhost:8080/invite`">멤버 초대하기</v-btn>
+      <v-btn outline color="black" onclick="location.href=`http://localhost:8080/invite`">멤버 초대하기</v-btn>
     </div>
 
       </v-container>
@@ -67,7 +69,7 @@
       </v-card>
     </v-flex>
   </v-layout>
-    
+  </div>
 
 
 </div>
@@ -101,6 +103,7 @@ export default {
     ],
        
     created() {
+
       axios.get(`${PLATFORM_SERVER_HOST_URL}/band/${this.bandId}/member`)
       .then(result => {
         this.members = result.data;
@@ -130,4 +133,3 @@ export default {
 }
 </style>
 
-  

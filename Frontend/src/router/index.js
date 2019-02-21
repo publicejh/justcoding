@@ -52,9 +52,16 @@ export default new Router({
       children: [
         { path: 'content', component: BandContents },
         { path: 'gallery', component: BandGallery },
-        { path: 'member', component: BandMember },
-        { path: 'invite', component: BandInvite },
+        { path: 'member',  component: BandMember },
+        { path: 'invite',  component: BandInvite },
       ]
+    },
+    
+    {
+      path: '/band/:id/invite',
+      name: 'BandInvite',
+      component: BandInvite,
+      props: true,
     },
     // {
     //   path: '/member',

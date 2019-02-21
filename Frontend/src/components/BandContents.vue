@@ -1,8 +1,8 @@
 <template>
   <!--전체 화면 비율설정-->
-  
+    
   <div id="e3" style="max-width: 40%; margin: auto;" class="grey lighten-3" center>
-  
+
     <!--검색 툴바-->
     <div>
       <div>
@@ -21,11 +21,14 @@
                   <div>새로운 소식을 남겨보세요.</div>
                 </div>
                 <!--글쓰기 팝업생성-->
+                
+                
   
                 <v-card>
                   <v-card-title>
                     <span class="headline">글쓰기</span>
                   </v-card-title>
+                  <ckeditor :editor="editor" v-model="postBody" ></ckeditor>
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-layout wrap>
@@ -33,28 +36,31 @@
                       <v-text-field
                        label="제목을 입력하세요"
                        name="postTitle" 
+                       color="orange"
                        v-model="postTitle"
                       ></v-text-field>
                       </v-flex>
+                      <!-- {{editorData}} -->
+                     
                         <v-flex xs12>
-                          <v-textarea full-width placeholder="새로운 소식을 남겨보세요" name="postBody" v-model="postBody">{{postBody}}</v-textarea>
+                          <!-- <v-textarea full-width placeholder="새로운 소식을 남겨보세요" name="postBody" v-model="postBody">{{postBody}}</v-textarea> -->
                           <!-- <v-tooltip top><i class="material-icons Brown600" slot="activator" >perm_media</i><span>사진첨부</span></v-tooltip>
   
                             <v-tooltip right><i class="material-icons Brown600" slot="activator">attachment</i><span>파일첨부</span></v-tooltip>-->
-                             <div v-if="!image">
+                             <!-- <div v-if="!image">
     <input type="file"  @change="onFileChange">
      
   </div>
   <div v-else>
     <img class="InsertImage" :src="image" />
-    <button @click="removeImage">Remove image</button>
-  </div><button v-on:click="submitFile()">Submit</button>
+    <v-btn @click="removeImage" flat>Remove image</v-btn>
+  <v-btn v-on:click="submitFile()" flat>Submit</v-btn></div> -->
 
 
             
-                          <upload-btn icon
+                          <!-- <upload-btn icon
                           v-model="ImageUpload"> 
-                            <template slot="icon">
+                            <template slot="icon" color="orange">
                                 <i class="material-icons Brown600" slot="activator">perm_media</i>
                             </template>
                           </upload-btn>
@@ -62,7 +68,7 @@
                           <template slot="icon">
                            <i class="material-icons Brown600" slot="activator">attachment</i>
                           </template>
-                          </upload-btn>
+                          </upload-btn> -->
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -98,10 +104,84 @@
                     height="150px"
                     contain>
                   </div >                
-                  <p>{{post.content}}</p>
-
+                  <p v-html="post.content"></p>
+                 
                 </div>
               </v-card-title>
+                
+
+              <div style="float:right">
+                   <v-dialog v-model="updatedialog" persistent max-width="800px">
+                <v-btn
+                    flat
+                    color="orange"
+                    style="float:right"
+                    slot="activator"
+                  >수정</v-btn>
+                <!--수정하기 팝업생성-->
+  
+                <v-card>
+                  <v-card-title>
+                    <span class="headline">수정하기</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container grid-list-md>
+                      <v-layout wrap>
+                      <v-flex xs12>
+                      <v-text-field
+                       label="제목을 입력하세요"
+                       name="postTitle" 
+                       color="orange"
+                       v-model="postTitle"
+                      
+                      ></v-text-field>
+                      </v-flex>
+                        <v-flex xs12>
+                          <v-textarea full-width name="postBody" v-model="post.content"><p>{{post.content}}</p></v-textarea>
+                          <!-- <v-tooltip top><i class="material-icons Brown600" slot="activator" >perm_media</i><span>사진첨부</span></v-tooltip>
+  
+                            <v-tooltip right><i class="material-icons Brown600" slot="activator">attachment</i><span>파일첨부</span></v-tooltip>-->
+                             <div v-if="!image">
+    <input type="file"  @change="onFileChange">
+     
+  </div>
+  <div v-else>
+    <img class="InsertImage" :src="image" />
+    <button @click="removeImage">Remove image</button>
+  </div><button v-on:click="submitFile()">Submit</button>
+
+
+            
+                          <upload-btn icon
+                          v-model="ImageUpload"> 
+                            <template slot="icon">
+                                <i class="material-icons Brown600" slot="activator">perm_media</i>
+                            </template>
+                          </upload-btn>
+                          <upload-btn icon>
+                          <template slot="icon">
+                           <i class="material-icons Brown600" slot="activator">attachment</i>
+                          </template>
+                          </upload-btn>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="orange" flat @click="updatedialog = false">Close</v-btn>
+                    <v-btn color="orange" flat v-on:click="updatePost(post.id)" @click="updatedialog = false">Save</v-btn>
+
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+                  
+                  <v-btn
+                    flat
+                    color="orange"
+                    style="float:right"
+                    v-on:click="deletePost(post.id)"
+                  >삭제</v-btn></div>
 
               <v-expansion-panel>
                 <v-expansion-panel-content>
@@ -138,7 +218,12 @@
           </v-flex>
         </v-layout>
       </v-container>
+      
     </v-card>
+    
+   
+    
+
    
   </div>
 </template>
@@ -152,15 +237,21 @@
   import axios from "axios";
   import UploadButton from "vuetify-upload-button";
   import { PLATFORM_SERVER_HOST_URL } from "../settings"
+  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  
+
+
  
   export default {
     components: {
-      "upload-btn": UploadButton
+      "upload-btn": UploadButton,
+       
     },
   
     data: () => ({
   
       dialog: false,
+      updatedialog: false,
       posts: [],
       //comments:[],
       postBody: "",
@@ -172,7 +263,15 @@
       postnum: "",
       ImageUpload:"",
       file:'',
+      editorText: '',
+      editor: ClassicEditor,
+      editorData: '',
 
+      temptemp: "<b>test</b>",
+      customEditor:  ClassicEditor.defaultCoonfig = {
+        
+    toolbar: [ 'heading', '|', 'bold', 'italic', 'custombutton' ]
+      }
      }),
 
     props: [
@@ -211,6 +310,46 @@
           })
   
           .then(response => {})
+          // .then(console.log(this.postBody))
+          // .then(console.log(response.postBody))
+          .catch(e => {
+            this.errors.push(e);
+  
+          });
+  
+      },
+        updatePost(post_id) {
+  
+        axios
+          .put(`${PLATFORM_SERVER_HOST_URL}/post/update/${post_id}/`, {
+            title: this.postTitle,
+            content: this.postBody,
+            band_id: this.bandId,
+            author: this.$store.getters.user.userId,
+            //image : this.ImageUpload,
+          })
+  
+          .then(response => {})
+          // .then(console.log(this.postBody))
+          // .then(console.log(response.postBody))
+          .catch(e => {
+            this.errors.push(e);
+  
+          });
+  
+      },
+
+           deletePost(post_id) {
+
+        axios.delete(`${PLATFORM_SERVER_HOST_URL}/post/delete/${post_id}`,  {          
+          })
+  
+          .then(response => {
+            this.result.splice(id, 1)
+        console.log(this.result);
+        console.log(xxxxx);
+
+          })
           // .then(console.log(this.postBody))
           // .then(console.log(response.postBody))
           .catch(e => {
@@ -258,7 +397,7 @@
             let formData = new FormData();
                // Add the form data we need to submit
             formData.append('file', this.file);
- console.log('xxxxx');
+            console.log('xxxxx');
             axios.post( '/post/comments/create',
                 formData,
                 {
@@ -322,6 +461,7 @@
 
 
 <style>
+
   .container {
     background-color: #FFF59D;
   }

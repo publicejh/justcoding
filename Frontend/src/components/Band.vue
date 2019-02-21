@@ -16,7 +16,7 @@
     </div>
     <div>
       <router-view :bandId="id"></router-view>
-      <!--<band-contents :bandId="bandId"></band-contents>-->
+      <band-contents :bandId="id"></band-contents>
     </div>
     <div style="max-width: 20%; display: inline-block; margin: auto; padding: 10px">
         <chats></chats>
