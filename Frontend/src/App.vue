@@ -38,7 +38,7 @@
           items = [
             {icon: 'chat', title: 'Alarm', route: '/'},
             {icon: 'chat', title: 'Chat', route: '/'},
-            {icon: 'chat', title: 'LOGOUT', route: '/logout'}
+            {icon: 'chat', title: 'MyPage', route: '/mypage'}
             //{icon: 'chat', title: 'Logout', route: '/'},
 
           ]

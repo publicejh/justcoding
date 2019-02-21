@@ -7,8 +7,6 @@ User = get_user_model()
 
 def get_last_20_messages(chat_id, end_at=None):
     chat = get_object_or_404(Chat, id=chat_id)
-    print('ggggggg')
-    print(end_at)
     if end_at:
         return chat.messages.filter(id__lt=end_at).order_by('-timestamp').all()[:20]
         # return chat.messages.order_by('-timestamp').all()[end_at:end_at+20]

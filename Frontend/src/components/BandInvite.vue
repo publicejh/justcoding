@@ -117,7 +117,7 @@ export default {
   watch: {
     invitationToken (val, oldVal) {
       console.log('watched invitationToken: ', val)
-      this.invitationUrl = `${PLATFORM_SERVER_HOST_URL}/band/n/${val}`
+      this.invitationUrl = `http://localhost:8080/#/n/${val}`
     }
   },
 

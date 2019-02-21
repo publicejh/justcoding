@@ -9,16 +9,9 @@ import BandGallery from '../components/BandGallery.vue'
 import invite from '../components/invite.vue'
 import Home from '../components/Home.vue'
 import Newband from '../components/Newband.vue'
-import BandContents from '../components/BandContents.vue';
-import BandInvite from '../components/BandInvite.vue';
-import AuthGuard from './auth-guard';
-// import Mypage from '../components/Mypage.vue';
-// import MypageContents from '../components/MypageContents.vue';
-// import MypageMenu from '../components/MypageMenu.vue';
-import Logout from '../components/Logout.vue';
-import IsLogined from './is-logined.js'
 import BandContents from '../components/BandContents.vue'
 import BandInvite from '../components/BandInvite.vue'
+import MyPage from '../components/MyPage.vue'
 import BandInvitationHome from '../components/Band/BandInvitationHome.vue'
 import Chats from '@/components/Chat/Chats'
 import Chat from '@/components/Chat/Chat'
@@ -50,10 +43,10 @@ export default new Router({
       component: Signup
     },
     {
-      path: '/logout',
-      name: 'Logout',
-      component: Logout,
-      beforeEnter: IsLogined
+      path: '/mypage',
+      name: 'MyPage',
+      component: MyPage,
+      beforeEnter: AuthGuard
     },
     {
       path: '/band/:id',

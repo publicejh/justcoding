@@ -82,19 +82,21 @@ const AuthModule = {
         commit('setError', ex)
       })
     },
-    // //로그아웃
-    // signUserout ({commit}, payload) {
-    //   commit('setLoading', true)
-    //   commit('clearError')
-    // 
-    //   axios.post(`${AUTH_SERVER_HOST_URL}/rest-auth/logout/`, {
-    //
-    //     username: payload.username
-    //   }).then(res => {
-    //     commit('setLoading', false)
-    //
-    //   })
-    // }
+
+    signUserOut ({commit}, payload) {
+      commit('setUser', null)
+      
+      localStorage.removeItem("token")
+      localStorage.removeItem("username")
+    
+      // axios.post(`${AUTH_SERVER_HOST_URL}/rest-auth/logout/`, {
+    
+      //   username: payload.username
+      // }).then(res => {
+      //   commit('setLoading', false)
+    
+      // })
+    }
   },
   getters: {
     user (state) {

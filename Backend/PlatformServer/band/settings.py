@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'justcoding_merge',
         'USER': 'root',
-        'PASSWORD': '9699',
+        'PASSWORD': '1dlwjdgh',
         'HOST': '127.0.0.1',
         'POST': '3306',
     }
