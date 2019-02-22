@@ -3,23 +3,24 @@
   <v-layout id="list_view">
 
     <router-link to="/band-create" tag="span" style="cursor: pointer">
-      <v-hover >
+      <v-hover class="text-xs-center" style="display:flex">
         <v-card
           slot-scope="{ hover }"
           :class="`elevation-${hover ? 12 : 2}`"
           width="250"
           height="250"
           color="#FFF59D"
-          style="align:center; padding:45px; margin: 30px"
+          style="align:center; margin: 30px"
+          class="text-xs-center"
         >
-          <v-card-title>
-            <div style="margin : auto">
-              <span class="headline">밴드만들기</span>
+          <v-card-title class="text-xs-center" style="margin:auto">
+            <div style="margin : auto" class="text-md-center">
+              <h2 class="text-xs-center" >밴드 생성</h2>
               <div class="d-flex" style="align:center; margin:auto">
                   <i class="material-icons">add</i>
               </div>
             </div>
-            <v-spacer></v-spacer>
+            
           </v-card-title>
         </v-card>
       </v-hover>

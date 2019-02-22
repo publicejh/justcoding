@@ -1,32 +1,41 @@
 <template>
-  <v-list subheader>
-    <v-subheader>
-      Chats
+<div id="app" style="width: 250px;">
+<v-layout row style="width: 250px; margin: 0px 100px auto 30px; float: right;">
+  <v-flex>
+    <v-card>
+      
+      
+  <v-list style="padding:30px">
+   
+      <span class="headline">채팅</span>
+      <div style="float:right">
       <v-dialog v-model="dialog" scrollable max-width="300px">
-        <v-btn slot="activator" color="primary" dark>+</v-btn>
-        <v-card>
-          <v-card-title>Select Country</v-card-title>
+         <v-btn slot="activator" color="orange" flat>New Chat</v-btn>
+       <v-card>
+          <v-card-title>멤버선택</v-card-title>
           <v-divider></v-divider>
           <v-card-text style="height: 300px;">
-            {{selected}}
+            <p>{{selected}}</p>
             <v-list-tile v-for="member in members" :key="member.username">
               <v-list-tile-content>
                 <v-checkbox :value="member.username" 
                             :key="member.username"
                             :label="member.username"
-                            v-model="selected">
+                            v-model="selected"
+                            color="orange">
                 </v-checkbox>
               </v-list-tile-content>
             </v-list-tile>
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
-            <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-            <v-btn color="blue darken-1" flat @click="createChat">Create</v-btn>
+            <v-btn color="orange" flat @click="dialog = false">Close</v-btn>
+            <v-btn color="orange" flat @click="createChat">Create</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-subheader>
+      </div>
+   <v-divider></v-divider>
   <!--  <v-list-tile avatar v-for="(chat, index) in chats" v-bind:key="chat.name" @click="test" :to="/chat/ + chat.id" target="_blank"> -->
     <v-list-tile avatar v-for="(chat, index) in chats" v-bind:key="chat.name" @click="openChat(chat.id)">
       <v-list-tile-content>
@@ -34,6 +43,13 @@
       </v-list-tile-content>
     </v-list-tile>
   </v-list>
+       
+    
+    </v-card>
+  </v-flex>
+
+</v-layout>
+</div>
 </template>
 
 <script>

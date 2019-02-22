@@ -16,11 +16,11 @@
       <!-- <v-spacer></v-spacer>이거 쓰면 공간 벌릴 수 있음 -->
     <div class="text-xs-right">
 
-      <v-dialog v-model="dialog" scrollable max-width="300px">
+      <v-dialog v-model="dialog" scrollable max-width="50%">
         <!--<v-btn slot="activator" color="primary" dark>+</v-btn>-->
-        <v-btn slot="activator" @click="createInvitationToken">초대링크생성</v-btn>
+        <v-btn slot="activator" @click="createInvitationToken"  color="#FFCC80">초대링크생성</v-btn>
         <v-card>
-          <v-card-title>Select Country</v-card-title>
+          <v-card-title>멤버초대하기</v-card-title>
           <v-divider></v-divider>
           <v-card-text style="height: 300px;">
 
@@ -49,8 +49,8 @@
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
-            <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-            <v-btn color="blue darken-1" flat @click="">Create</v-btn>
+            <v-btn color="orange" flat @click="dialog = false">Close</v-btn>
+            <v-btn color="orange" flat @click="">Create</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>

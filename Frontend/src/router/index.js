@@ -57,7 +57,7 @@ export default new Router({
 
       // 중첩된 라우트는 children 속성으로 하위 라우트를 정의할 수 있다.
       children: [
-        { path: 'content', component: BandContents },
+        { path: '', component: BandContents },
         { path: 'gallery', component: BandGallery },
         { path: 'member',  component: BandMember },
         { path: 'invite',  component: BandInvite },
@@ -108,5 +108,6 @@ export default new Router({
       props: true
       // beforeEnter: AuthGuard
     }
-  ]
+  ],
+  mode: 'history',
 })

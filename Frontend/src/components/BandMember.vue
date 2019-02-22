@@ -5,7 +5,7 @@
  <div
     id="e3"
     style="max-width: 40%; margin: auto;"
-    class="grey lighten-3"
+    
     center
   >
   <!--
@@ -59,6 +59,7 @@
 
             <v-list-tile-content>
               <v-list-tile-title v-html="member.username"></v-list-tile-title>
+
             </v-list-tile-content>
 
             <v-list-tile-action>

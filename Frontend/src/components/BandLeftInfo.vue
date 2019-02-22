@@ -1,7 +1,7 @@
 <template>
     <div id="app">
 
-    <v-layout row style="width: 300px; margin: 20px 30px auto 100px">
+    <v-layout row style="width: 250px; margin: 0px 30px auto 100px">
       <v-flex >
         <v-card>
           <v-img

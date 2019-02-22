@@ -1,7 +1,7 @@
 <template>
   <!--전체 화면 비율설정-->
     
-  <div id="e3" style="max-width: 40%; margin: auto;" class="grey lighten-3" center>
+  <div style="max-width: 40%; margin: auto;" class="grey lighten-3" center>
 
     <!--검색 툴바-->
     <div>
@@ -29,6 +29,7 @@
                     <span class="headline">글쓰기</span>
                   </v-card-title>
                   <ckeditor :editor="editor" v-model="postBody" ></ckeditor>
+                  
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-layout wrap>
@@ -96,6 +97,8 @@
                 <div>
                   <div class="headline">{{post.title}}</div>
                   <span>작성시간 : {{post.created_at | formatDate}}</span>
+                  <p>작성자 : {{post.author}}</p>
+                  <v-divider></v-divider>
                   <p></p>
                  
                   <div v-if="post.image !== null" >
@@ -124,6 +127,7 @@
                   <v-card-title>
                     <span class="headline">수정하기</span>
                   </v-card-title>
+                  <ckeditor :editor="editor" v-model="postBody" ></ckeditor>
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-layout wrap>
@@ -136,34 +140,7 @@
                       
                       ></v-text-field>
                       </v-flex>
-                        <v-flex xs12>
-                          <v-textarea full-width name="postBody" v-model="post.content"><p>{{post.content}}</p></v-textarea>
-                          <!-- <v-tooltip top><i class="material-icons Brown600" slot="activator" >perm_media</i><span>사진첨부</span></v-tooltip>
-  
-                            <v-tooltip right><i class="material-icons Brown600" slot="activator">attachment</i><span>파일첨부</span></v-tooltip>-->
-                             <div v-if="!image">
-    <input type="file"  @change="onFileChange">
-     
-  </div>
-  <div v-else>
-    <img class="InsertImage" :src="image" />
-    <button @click="removeImage">Remove image</button>
-  </div><button v-on:click="submitFile()">Submit</button>
-
-
-            
-                          <upload-btn icon
-                          v-model="ImageUpload"> 
-                            <template slot="icon">
-                                <i class="material-icons Brown600" slot="activator">perm_media</i>
-                            </template>
-                          </upload-btn>
-                          <upload-btn icon>
-                          <template slot="icon">
-                           <i class="material-icons Brown600" slot="activator">attachment</i>
-                          </template>
-                          </upload-btn>
-                        </v-flex>
+                       
                       </v-layout>
                     </v-container>
                   </v-card-text>
@@ -190,7 +167,7 @@
                   <v-card v-for="comments in post.comments" v-bind:key="comments.id">
                     <v-card-text>
                       <h3>{{comments.author}} : {{comments.message}}</h3>
-                      <span>{{comments.created_at | formatDate}}</span>
+                      <span>[댓글작성] {{comments.created_at | formatDate}}</span>
 
                       <hr>
                     </v-card-text>
@@ -238,6 +215,7 @@
   import UploadButton from "vuetify-upload-button";
   import { PLATFORM_SERVER_HOST_URL } from "../settings"
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  // import Image from '@ckeditor/ckeditor5-image/src/image';
   
 
 

@@ -1,9 +1,7 @@
 <template>
-    <div id="app">
->
-  <v-app id="inspire">
+<div style="max-width: 40%; margin: auto;" center>
     <v-layout>
-      <v-flex xs12 sm6 offset-sm3>
+      <v-flex >
         <v-card>
           <v-container grid-list-sm fluid>
             <v-layout row wrap>
@@ -37,9 +35,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-  </v-app>
-   
-</div>
+</div>   
 </template>
 
 
