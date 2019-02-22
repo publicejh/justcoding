@@ -1,6 +1,6 @@
 <template>
 <div >
-  <v-layout id="list_view">
+  <v-layout id="list_view" style="margin-top:64px">
 
     <router-link to="/band-create" tag="span" style="cursor: pointer">
       <v-hover class="text-xs-center" style="display:flex">

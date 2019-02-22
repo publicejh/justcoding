@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <v-toolbar color="#FFA648">
+    <v-toolbar color="#FFA648" style="position: fixed; top:64px;  z-index:10000000">
       
       <v-toolbar-items v-for="item in menuItems">
         <v-btn flat :key="item.title" :to="item.route">
@@ -20,7 +20,7 @@
       <div class="right">
         <chats></chats>
       </div>    
-       <div>
+       <div style="margin-top:140px">
       <router-view :bandId="id"></router-view>
       <!-- <band-contents :bandId="id"></band-contents> -->
     </div>

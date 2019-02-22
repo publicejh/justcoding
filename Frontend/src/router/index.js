@@ -109,5 +109,5 @@ export default new Router({
       // beforeEnter: AuthGuard
     }
   ],
-  mode: 'history',
+  // mode: 'history',
 })

@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" style="position: fixed; top:150px">
 
     <v-layout row style="width: 250px; margin: 0px 30px auto 100px">
       <v-flex >

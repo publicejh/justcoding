@@ -1,7 +1,8 @@
 <template>
   <v-app>
-    <v-toolbar color="#FF9436">
-      <v-toolbar-title>
+
+    <v-toolbar color="#FF9436" style="position:fixed; z-index:10000000">
+      <v-toolbar-title >
         <router-link to="/" tag="span" style="cursor: pointer">
           <img style="padding:10px 0px 0px 0px;" src="./assets/sig_logo.png" width="100" height="80">
         </router-link>
@@ -14,11 +15,12 @@
         </v-btn>
       </v-toolbar-items>
       <!--<v-toolbar-side-icon @click.native.stop="drawerToggle = !drawerToggle"></v-toolbar-side-icon>-->
-    </v-toolbar>
+    </v-toolbar> 
     <main>
       <router-view></router-view>
     </main>
-  </v-app>
+  </v-app> 
+
 </template>
 
 <script>

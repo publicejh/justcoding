@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top:64px">
     <v-btn @click="logOut">logout</v-btn>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-<div id="app" style="width: 250px;">
+<div id="app" style="width: 250px; position: fixed; right: 20px; top:150px">
 <v-layout row style="width: 250px; margin: 0px 100px auto 30px; float: right;">
   <v-flex>
     <v-card>

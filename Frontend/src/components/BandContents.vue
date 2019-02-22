@@ -1,8 +1,40 @@
 <template>
   <!--전체 화면 비율설정-->
     
-  <div style="max-width: 40%; margin: auto;" class="grey lighten-3" center>
-
+  <div style="max-width: 40%; margin:auto; " class="grey lighten-3" center>
+                <v-dialog v-model="updatedialog" persistent max-width="800px">
+                
+            
+    
+                  <v-card>
+                    <v-card-title>
+                      <span class="headline">수정하기</span>
+                    </v-card-title>
+                    <ckeditor :editor="editor" v-model="postBodyEdit" ></ckeditor>
+                    <v-card-text>
+                      <v-container grid-list-md>
+                        <v-layout wrap>
+                        <v-flex xs12>
+                        <v-text-field
+                        
+                        name="postTitle" 
+                        color="orange"
+                        v-model="postTitle"
+                        
+                        ></v-text-field>
+                        </v-flex>
+                        
+                        </v-layout>
+                      </v-container>
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <!-- <v-btn color="orange" flat @click="updatedialog[index] = false">Close</v-btn> -->
+                      <v-btn color="orange" flat @click="updatedialog = false">Close</v-btn>
+                      <v-btn color="orange" flat v-on:click="updatePost(postIdEdit)" @click="updatedialog = false">Save</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
     <!--검색 툴바-->
     <div>
       <div>
@@ -18,6 +50,7 @@
             <v-layout>
               <v-dialog v-model="dialog" persistent max-width="800px">
                 <div slot="activator" class="headline">
+                  {{updatedialog}}
                   <div>새로운 소식을 남겨보세요.</div>
                 </div>
                 <!--글쓰기 팝업생성-->
@@ -41,35 +74,8 @@
                        v-model="postTitle"
                       ></v-text-field>
                       </v-flex>
-                      <!-- {{editorData}} -->
                      
                         <v-flex xs12>
-                          <!-- <v-textarea full-width placeholder="새로운 소식을 남겨보세요" name="postBody" v-model="postBody">{{postBody}}</v-textarea> -->
-                          <!-- <v-tooltip top><i class="material-icons Brown600" slot="activator" >perm_media</i><span>사진첨부</span></v-tooltip>
-  
-                            <v-tooltip right><i class="material-icons Brown600" slot="activator">attachment</i><span>파일첨부</span></v-tooltip>-->
-                             <!-- <div v-if="!image">
-    <input type="file"  @change="onFileChange">
-     
-  </div>
-  <div v-else>
-    <img class="InsertImage" :src="image" />
-    <v-btn @click="removeImage" flat>Remove image</v-btn>
-  <v-btn v-on:click="submitFile()" flat>Submit</v-btn></div> -->
-
-
-            
-                          <!-- <upload-btn icon
-                          v-model="ImageUpload"> 
-                            <template slot="icon" color="orange">
-                                <i class="material-icons Brown600" slot="activator">perm_media</i>
-                            </template>
-                          </upload-btn>
-                          <upload-btn icon>
-                          <template slot="icon">
-                           <i class="material-icons Brown600" slot="activator">attachment</i>
-                          </template>
-                          </upload-btn> -->
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -113,45 +119,18 @@
               </v-card-title>
                 
 
-              <div style="float:right">
-                   <v-dialog v-model="updatedialog" persistent max-width="800px">
+              <div style="float:right">  
                 <v-btn
-                    flat
-                    color="orange"
-                    style="float:right"
-                    slot="activator"
-                  >수정</v-btn>
-                <!--수정하기 팝업생성-->
-  
-                <v-card>
-                  <v-card-title>
-                    <span class="headline">수정하기</span>
-                  </v-card-title>
-                  <ckeditor :editor="editor" v-model="postBody" ></ckeditor>
-                  <v-card-text>
-                    <v-container grid-list-md>
-                      <v-layout wrap>
-                      <v-flex xs12>
-                      <v-text-field
-                       label="제목을 입력하세요"
-                       name="postTitle" 
-                       color="orange"
-                       v-model="postTitle"
-                      
-                      ></v-text-field>
-                      </v-flex>
-                       
-                      </v-layout>
-                    </v-container>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="orange" flat @click="updatedialog = false">Close</v-btn>
-                    <v-btn color="orange" flat v-on:click="updatePost(post.id)" @click="updatedialog = false">Save</v-btn>
+                      flat
+                      color="orange"
+                      style="float:right"
+                      slot="activator"
+                      @click="updatedialogFunc(post.id, post.content)"
+                    >수정
+                  </v-btn>
+      <!--수정하기 팝업생성-->
+                  
 
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
                   
                   <v-btn
                     flat
@@ -178,15 +157,14 @@
                     <v-text-field
                       placeholder="댓글을 남겨주세요."
                       color="orange"
-                      name="CommentCreateMsg"
-                      v-model="CommentCreateMsg"
+                      v-model="CommentCreateMsg[index]"
                     ></v-text-field>
                   </v-flex>
                   <v-btn
                     flat
                     color="orange"
                     style="float:right"
-                    v-on:click="createComment(post.id)"
+                    v-on:click="createComment(post.id, index)"
                   >댓글입력</v-btn>
 
                 </v-expansion-panel-content>
@@ -215,7 +193,7 @@
   import UploadButton from "vuetify-upload-button";
   import { PLATFORM_SERVER_HOST_URL } from "../settings"
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  // import Image from '@ckeditor/ckeditor5-image/src/image';
+
   
 
 
@@ -229,15 +207,20 @@
     data: () => ({
   
       dialog: false,
+      // updatedialog: false,
       updatedialog: false,
       posts: [],
       //comments:[],
+      editPost:"",
       postBody: "",
+      postBodyEdit: "",
+      postIdEdit: null,
       postTitle: "",
       errors: [],
       image: "",
       index: "",
-      CommentCreateMsg: "",
+      // CommentCreateMsg: "",
+      CommentCreateMsg: [],
       postnum: "",
       ImageUpload:"",
       file:'',
@@ -271,11 +254,27 @@
   
     },
 
+    mounted() {
+      
+    },
+
 
   
     methods: {
+      updatedialogFunc(postId, content) {
+        this.updatedialog = true
+        this.postBodyEdit = content
+        this.postIdEdit = postId
+      },
+
+      getPost(post_id){
+        var content = this.postBody
+        return content
+
+      },
   
       postPost() {
+        var content = this.postBody
   
         axios
   
@@ -287,7 +286,11 @@
             //image : this.ImageUpload,
           })
   
-          .then(response => {})
+          .then(response => {
+            var content = this.postBody
+            console.log(content)
+            return content
+          })
           // .then(console.log(this.postBody))
           // .then(console.log(response.postBody))
           .catch(e => {
@@ -296,12 +299,12 @@
           });
   
       },
-        updatePost(post_id) {
+      updatePost(post_id) {
   
         axios
           .put(`${PLATFORM_SERVER_HOST_URL}/post/update/${post_id}/`, {
-            title: this.postTitle,
-            content: this.postBody,
+            title: 'remove',
+            content: this.postBodyEdit,
             band_id: this.bandId,
             author: this.$store.getters.user.userId,
             //image : this.ImageUpload,
@@ -337,10 +340,10 @@
   
       },
   
-      createComment(post_id) {
+      createComment(post_id, index) {
         axios
           .post(`${PLATFORM_SERVER_HOST_URL}/post/comments/create`, {
-            message: this.CommentCreateMsg,
+            message: this.CommentCreateMsg[index],
             author: this.$store.getters.user.userId,
             post: post_id
           })
