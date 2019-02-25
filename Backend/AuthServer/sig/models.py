@@ -4,7 +4,6 @@ from django.conf import settings
 
 class Band(models.Model):
     band_name = models.CharField(max_length=45)
-    band_leader = models.IntegerField()
     members = models.ManyToManyField(settings.AUTH_USER_MODEL, through='BandParticipate')
 
     def __str__(self):

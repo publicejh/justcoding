@@ -16,6 +16,7 @@
     "@ckeditor/ckeditor5-vue": "^1.0.0-beta.1",
     "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.11",
+    "element-ui": "^2.5.4",
     "jwt-decode": "^2.2.0",
     "material-design-icons": "^3.0.1",
     "moment": "^2.24.0",

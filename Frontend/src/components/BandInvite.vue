@@ -7,18 +7,18 @@
     center
   >
   <div>
-     <v-card>
+     <v-card flat>
       <v-container
         class ="container"
         fluid
         grid-list-lg
-      ><h2>멤버초대</h2> 
-      <!-- <v-spacer></v-spacer>이거 쓰면 공간 벌릴 수 있음 -->
+      >
+      <h5>멤버초대</h5> 
     <div class="text-xs-right">
 
       <v-dialog v-model="dialog" scrollable max-width="50%">
         <!--<v-btn slot="activator" color="primary" dark>+</v-btn>-->
-        <v-btn slot="activator" @click="createInvitationToken"  color="#FFCC80">초대링크생성</v-btn>
+        <v-btn depressed slot="activator" @click="createInvitationToken"  color="#FFCC80">초대링크생성</v-btn>
         <v-card>
           <v-card-title>멤버초대하기</v-card-title>
           <v-divider></v-divider>
@@ -101,10 +101,7 @@ export default {
 
     axios.get(`${PLATFORM_SERVER_HOST_URL}/band/1/member`)
     .then(result => {
-      console.log(result);
       this.members = result.data;
-      console.log("XXXX")
-      console.log(this.members);
     });
 
 
@@ -167,9 +164,6 @@ export default {
 
 
 <style>
-.container{
-    background-color: #FFF59D
-}
 .membernum{
     text-decoration-color: #FF9436
 }

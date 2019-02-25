@@ -17,7 +17,9 @@ class Contact(models.Model):
 class Message(models.Model):
     contact = models.ForeignKey(
         Contact, related_name='messages', on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.TextField(blank=True, null=True)
+    is_file = models.BooleanField(default=False)
+    file_path = models.CharField(max_length=200, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -32,3 +34,6 @@ class Chat(models.Model):
 
     def __str__(self):
         return "{}".format(self.pk)
+
+    def group_name(self):
+        return 'chat_%s' % self.id

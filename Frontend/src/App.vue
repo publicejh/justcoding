@@ -1,8 +1,7 @@
 <template>
-  <v-app>
-
-    <v-toolbar color="#FF9436" style="position:fixed; z-index:10000000">
-      <v-toolbar-title >
+  <v-app style="background-color:#eee">
+    <v-toolbar color="#FF9436" style="position:fixed; z-index:10000000" height="50px">
+      <v-toolbar-title style="margin-left: 137px;">
         <router-link to="/" tag="span" style="cursor: pointer">
           <img style="padding:10px 0px 0px 0px;" src="./assets/sig_logo.png" width="100" height="80">
         </router-link>
@@ -14,12 +13,14 @@
           <div class="hidden-xs-only">{{ item.title }}</div>
         </v-btn>
       </v-toolbar-items>
+        <v-btn flat style="margin-right: 30px;" disabled>
+        </v-btn>
       <!--<v-toolbar-side-icon @click.native.stop="drawerToggle = !drawerToggle"></v-toolbar-side-icon>-->
     </v-toolbar> 
-    <main>
+    <main style="margin-top:55px;">
       <router-view></router-view>
     </main>
-  </v-app> 
+  </v-app>
 
 </template>
 
@@ -38,9 +39,9 @@
         ]
         if (this.userIsAuthenticated) {
           items = [
-            {icon: 'chat', title: 'Alarm', route: '/'},
-            {icon: 'chat', title: 'Chat', route: '/'},
-            {icon: 'chat', title: 'MyPage', route: '/mypage'}
+            {icon: 'notifications', title: 'Alarm', route: '/alarm'},
+            {icon: 'chat', title: 'Chat', route: '/chat'},
+            {icon: 'account_circle', title: 'MyPage', route: '/mypage'}
             //{icon: 'chat', title: 'Logout', route: '/'},
 
           ]
@@ -48,7 +49,8 @@
         return items
       },
       userIsAuthenticated () {
-        return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+        // return "token" in localStorage
+        return this.$store.getters.user !== null && this.$store.getters.user !== undefined || "token" in localStorage
       },
       onlineUsers () {
         console.log(this.$store.getters.onlineUsers)

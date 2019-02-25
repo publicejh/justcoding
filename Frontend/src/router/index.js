@@ -11,6 +11,7 @@ import Home from '../components/Home.vue'
 import Newband from '../components/Newband.vue'
 import BandContents from '../components/BandContents.vue'
 import BandInvite from '../components/BandInvite.vue'
+import BandSetting from '../components/BandSetting.vue'
 import MyPage from '../components/MyPage.vue'
 import BandInvitationHome from '../components/Band/BandInvitationHome.vue'
 import Chats from '@/components/Chat/Chats'
@@ -61,6 +62,7 @@ export default new Router({
         { path: 'gallery', component: BandGallery },
         { path: 'member',  component: BandMember },
         { path: 'invite',  component: BandInvite },
+        { path: 'setting',  component: BandSetting }
       ]
     },
     
@@ -108,6 +110,5 @@ export default new Router({
       props: true
       // beforeEnter: AuthGuard
     }
-  ],
-  // mode: 'history',
+  ]
 })

@@ -1,6 +1,7 @@
 import { CHAT_SERVER_HOST_URL } from "@/settings";
 import axios from 'axios'
 import WebSocketInstance from '../websocket'
+import jwt_decode from 'jwt-decode'
 
 const ChatModule = {
   state: {
@@ -34,22 +35,27 @@ const ChatModule = {
     },
 
     createChat ({commit}, payload) {
+      return new Promise((resolve, reject) => {
 
-      axios.post(`${CHAT_SERVER_HOST_URL}/chat/create/`, {
-        band: payload.bandId,
-        participants: payload.participants
-      }).then(res => {
-        console.log('chat created: ', res.data)
-      }).catch((ex)=>{
-        console.log(ex)
+        axios.post(`${CHAT_SERVER_HOST_URL}/chat/create/`, {
+          band: payload.bandId,
+          participants: payload.participants
+        }).then(res => {
+          console.log('chat created: ', res.data)
+          resolve(res)
+        }).catch((ex)=>{
+          console.log(ex)
+          reject(ex)
+        })
       })
     },
 
-    loadChats ({commit}) {
+    loadChats ({commit}, payload) {
+      let username = jwt_decode(localStorage.getItem("token")).username
         axios({
             method: 'GET',
             url: `${CHAT_SERVER_HOST_URL}/chat/`,
-            params: { username: this.getters.user.username, band_id: this.getters.sigId}
+            params: { username: username, band_id: payload}
         })
         .then((response) => {
             commit('setChats', response.data)

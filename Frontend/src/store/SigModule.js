@@ -10,7 +10,9 @@ const SigModule = {
     invitationSigId: null,
     sigMembers: [],
     isInvitationTokenValid: false,
-    sigName: ''
+    sigName: '',
+    sigMemberCnt: '',
+    sigCoverImgPath: ''
   },
   mutations: {
     setSigId (state, payload) {
@@ -25,18 +27,46 @@ const SigModule = {
     setSigName (state, payload) {
       state.sigName = payload
     },
+    setSigMemberCnt (state, payload) {
+      state.sigMemberCnt = payload
+    },
+    setSigCoverImgPath (state, payload) {
+      state.sigCoverImgPath = payload
+    },
     setIsInvitationTokenValid (state, payload) {
       state.isInvitationTokenValid = payload
     }
   },
   actions: {
+    setSigAll ({commit}, payload) {
+      return new Promise((resolve, reject) => {
+        axios.get(`${PLATFORM_SERVER_HOST_URL}/band/${payload}`).then(res => {
+            
+            commit('setSigId', res.data.id)
+            commit('setSigName', res.data.band_name)
+            commit('setSigCoverImgPath', res.data.band_cover_img_path)
+            commit('setSigMemberCnt', res.data.members.length)
+            resolve(res);
+    
+          }).catch((e)=>{
+            console.log('errrrr: ', e)
+            reject(e);
+          })
+      })
+    },
     setSig ({commit}, payload) {
       commit('setSigId', payload)
     },
-    loadSigMembers ({commit}) {
+    setSigName ({commit}, payload) {
+      commit('setSigName', payload)
+    },
+    setSigCoverImgPath ({commit}, payload) {
+      commit('setSigCoverImgPath', payload)
+    },
+    loadSigMembers ({commit}, payload) {
       axios({
         method: 'GET',
-        url: `${PLATFORM_SERVER_HOST_URL}/band/${this.getters.sigId}/member`
+        url: `${PLATFORM_SERVER_HOST_URL}/band/${payload}/member`
       }).then((response) => {
         // state.sigMembers = response.data
         commit('setSigMembers', response.data)
@@ -80,11 +110,12 @@ const SigModule = {
     },
     acceptInvitation ({commit}, payload) {
         return new Promise((resolve, reject) => {
+          console.log('xxx: ', payload)
             // Do something here... lets say, a http call using vue-resource
-            axios.post(`${PLATFORM_SERVER_HOST_URL}/band/${this.getters.invitationSigId}/invite/`, {
-                user: this.getters.user.userId,
-                band: this.getters.invitationSigId,
-                is_band_leader: false
+            axios.post(`${PLATFORM_SERVER_HOST_URL}/band/${payload.sigId}/invite/`, {
+                user: jwt_decode(localStorage.getItem("token")).user_id,
+                band: payload.sigId,
+                is_band_leader: payload.isLeader
               }).then(res => {
                 console.log('invitation succeed')
                 resolve(res)
@@ -109,6 +140,12 @@ const SigModule = {
     },
     sigName (state) {
       return state.sigName
+    },
+    sigMemberCnt (state) {
+      return state.sigMemberCnt
+    },
+    sigCoverImgPath (state) {
+      return state.sigCoverImgPath
     },
     isInvitationTokenValid (state) {
       return state.isInvitationTokenValid

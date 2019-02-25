@@ -12,7 +12,7 @@ class BandSerializer(serializers.ModelSerializer):
 class BandMemberSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('members', 'band_leader')
+        fields = ('members', )
         model = Band
 
 

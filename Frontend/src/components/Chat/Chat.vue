@@ -1,22 +1,38 @@
 <template>
-  <v-flex style="position: relative;">
-    <div class="chat-container" v-on:scroll="onScroll" ref="chatContainer" >
-      <message :username="username" :messages="messages" @imageLoad="scrollToEnd"></message>
-    </div>
-    <emoji-picker :show="emojiPanel" @close="toggleEmojiPanel" @click="addMessage"></emoji-picker>
-    <div class="typer">
-      <input type="text" placeholder="Type here..." v-on:keyup.enter="sendMessage" v-model="content">
-      <v-btn icon class="blue--text emoji-panel" @click="toggleEmojiPanel">
-        <v-icon>e</v-icon>
-      </v-btn>
-    </div>
-  </v-flex>
+  <div style="margin-top:5px">
+    <v-flex style="position: relative;">
+      <div class="chat-container" v-on:scroll="onScroll" ref="chatContainer" >
+        <message :username="username" :messages="messages" @imageLoad="scrollToEnd"></message>
+      </div>
+      <emoji-picker :show="emojiPanel" @close="toggleEmojiPanel" @click="addMessage"></emoji-picker>
+      
+      <div class="typer">
+          <v-btn icon class="blue--text emoji-panel" @click="toggleEmojiPanel">
+            <v-icon>insert_emoticon</v-icon>
+          </v-btn>
+          <span>
+            <label style="margin:0;">
+              <form id="myForm" enctype="multipart/form-data"> 
+                <input style="display: none;" type="file" id="file" ref="myFiles" class="custom-file-input" @change="previewFiles">
+              </form>
+              <v-icon>add_a_photo</v-icon>
+            </label>
+          </span>
+          <input type="text" placeholder="Type here..." v-on:keyup.enter="sendMessage" v-model="content">
+      </div>
+    </v-flex>
+  </div>
 </template>
 
 <script>
   import Message from './Message.vue'
   import EmojiPicker from './EmojiPicker.vue'
   import WebSocketInstance from '@/websocket'
+  import jwt_decode from 'jwt-decode' 
+  import axios from "axios";
+  import {
+    FILE_SERVER_HOST_URL
+  } from "@/settings"
 
   export default {
     data () {
@@ -26,7 +42,8 @@
         emojiPanel: false,
         currentRef: {},
         loading: false,
-        totalChatHeight: 0
+        totalChatHeight: 0,
+        userId: jwt_decode(localStorage.getItem("token")).user_id
       }
     },
     props: [
@@ -58,14 +75,15 @@
           /*eslint-disable */
           var urlPattern = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
           /*eslint-enable */
-          message.content = message.content
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;')
-          message.content = message.content.replace(urlPattern, "<a href='$1'>$1</a>")
-          console.log('dddddd ', message)
+          if(message.content){
+            message.content = message.content
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&#039;')
+            message.content = message.content.replace(urlPattern, "<a href='$1'>$1</a>")
+          }
           if (!newMessage) {
             that.chatMessages.unshift(that.processMessage(message))
             that.scrollTo()
@@ -188,7 +206,42 @@
       },
       toggleEmojiPanel () {
         this.emojiPanel = !this.emojiPanel
-      }
+      },
+      previewFiles() {
+        var self = this;
+
+        this.files = this.$refs.myFiles.files
+        var formID = "myForm";
+  
+        var form = document.getElementById(formID);
+        var formData = new FormData(form);
+
+        formData.append('file', this.files[0]);
+        formData.append('userId', this.userId);
+        formData.append('chatId', this.id);
+  
+        axios({
+            method: 'post',
+            url: `${FILE_SERVER_HOST_URL}/file_manage/chat/upload/image/`,
+            contentType: false,
+            processData: false,
+            data: formData,
+            config: {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            }
+          })
+          .then(function(response) {
+            //handle success
+            console.log(response)
+  
+          })
+          .catch(function(response) {
+            //handle error
+            console.log(response);
+          });
+      },
     }
   }
 </script>
@@ -212,7 +265,6 @@
     /*margin-right: 15px;*/
   }
   .typer input[type=text]{
-    position: absolute;
     left: 2.5rem;
     padding: 1rem;
     width: 80%;

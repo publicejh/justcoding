@@ -1,26 +1,31 @@
 <template>
-    <div id="app" style="position: fixed; top:150px">
+    <div id="app" style="position: fixed; top: 101px;">
 
-    <v-layout row style="width: 250px; margin: 0px 30px auto 100px">
+    <v-layout row style="width: 250px; margin: 0px 30px auto 152px">
       <v-flex >
-        <v-card>
+        <v-card flat>
           <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            :src="sigCoverImgSrc"
             height="200px"
           >
           </v-img>
   
-          <v-card-title primary-title>
+          <v-card-title style="padding-bottom: 0;" primary-title>
             <div>
-              <div class="headline">{{bandName}}</div>
-              <span class="grey--text">멤버수 : {{memberCnt}}</span>
+              <div class="headline">{{this.$store.getters.sigName}}</div>
+              <span>멤버 {{this.$store.getters.sigMemberCnt}}</span>
+              <v-btn style="min-width: 0;" small flat color="orange" :to="`/band/${bandid}/invite`">
+                <v-icon small color="orange">control_point</v-icon>
+                초대
+              </v-btn>
             </div>
           </v-card-title>
   
           <v-card-actions>
-            <v-btn  color="#FFCC80" :to="bandid + /invite/">멤버초대하기</v-btn>
-            <v-spacer></v-spacer>
-
+            <v-btn color="grey" small flat :to="`/band/${bandid}/setting`">
+             <v-icon color="grey">settings</v-icon>
+             시그 설정
+            </v-btn>
           </v-card-actions>
   
           <v-slide-y-transition>
@@ -35,13 +40,14 @@
 
 <script>
   import axios from 'axios'
-  import { PLATFORM_SERVER_HOST_URL } from "../settings"
+  import { PLATFORM_SERVER_HOST_URL, FILE_SERVER_HOST_URL } from "../settings"
 
   export default {
     data () {
       return {
         bandName: '',
-        memberCnt: 0
+        memberCnt: 0,
+        sigCoverImgSrc: `${FILE_SERVER_HOST_URL}` + this.$store.getters.sigCoverImgPath,
       }
     },
 
@@ -49,16 +55,6 @@
       'bandid'
     ],
 
-    created() {
 
-      axios.get(`${PLATFORM_SERVER_HOST_URL}/band/${this.bandid}`).then(result => {
-        this.bandName = result.data.band_name;
-        this.memberCnt = result.data.members.length;
-
-      }).catch((e)=>{
-        console.log('errrrr: ', e)
-      })
-      
-    },
   }
 </script>

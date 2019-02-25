@@ -6,18 +6,19 @@
       <div style="margin-top: 5px"></div>
       <div class="content">
         <div v-html="message.content"></div>
-        <!--<chat-image v-if="message.image" :imgsrc="message.image" @imageLoad="imageLoad"></chat-image>-->
+        <chat-image v-if="message.is_file" :imgPath="message.file_path" @imageLoad="imageLoad"></chat-image>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-//   import Image from './Image.vue'
+  import Image from './Image.vue'
 
   export default {
     data () {
-      return {}
+      return {
+        }
     },
     props: [
       'username',
@@ -25,7 +26,7 @@
     ],
     
     components: {
-    //   'chat-image': Image
+      'chat-image': Image
     },
     methods: {
       imageLoad () {

@@ -13,6 +13,15 @@ class BandList(generics.ListAPIView):
     queryset = Band.objects.all()
     serializer_class = BandSerializer
 
+    def get_queryset(self):
+        user_id = self.request.query_params.get('user_id', None)
+        band_list = []
+        for band_obj in BandParticipate.objects.filter(user_id=user_id):
+            band_list.append(band_obj.band_id)
+        queryset = Band.objects.filter(id__in=band_list)
+
+        return queryset
+
 
 class BandDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Band.objects.all()
@@ -36,6 +45,11 @@ class BandParticipateListView(generics.ListAPIView):
 
 
 class BandCreate(generics.CreateAPIView):
+    queryset = Band
+    serializer_class = BandSerializer
+
+
+class BandUpdateView(generics.UpdateAPIView):
     queryset = Band
     serializer_class = BandSerializer
 

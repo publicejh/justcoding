@@ -88,6 +88,7 @@ const AuthModule = {
       
       localStorage.removeItem("token")
       localStorage.removeItem("username")
+      // this.$router.go('')
     
       // axios.post(`${AUTH_SERVER_HOST_URL}/rest-auth/logout/`, {
     

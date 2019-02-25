@@ -41,7 +41,7 @@
         }
       }), error => {
             console.error("Got nothing from server. Prompt user to check internet connection and try again")
-        })
+      })
     },
 
     mounted() {
@@ -56,8 +56,8 @@
     methods: {
   
       acceptInvitation() {
-          this.$store.dispatch('acceptInvitation').then((res => {
-            alert('yyyyinvitation succeed')
+          this.$store.dispatch('acceptInvitation', {sigId: this.$store.getters.invitationSigId, isLeader:false}).then((res => {
+            alert('invitation succeed')
             this.$router.push(`/band/${this.$store.getters.invitationSigId}`)
               
             }), error => {

@@ -43,6 +43,8 @@ class ChatConsumer(WebsocketConsumer):
             'id': message.id,
             'author': message.contact.user.username,
             'content': message.content,
+            'is_file': message.is_file,
+            'file_path': message.file_path,
             'timestamp': str(message.timestamp)
         }
 

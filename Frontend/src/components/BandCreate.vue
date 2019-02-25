@@ -29,6 +29,7 @@
 <script>
 import axios from "axios";
 import { PLATFORM_SERVER_HOST_URL } from "../settings"
+  import jwt_decode from 'jwt-decode'
 export default {
       data: () => ({
   
@@ -41,18 +42,25 @@ methods: {
         axios
           .post(`${PLATFORM_SERVER_HOST_URL}/band/create/`, {
             band_name: this.bandtitle,
-            band_leader : this.$store.getters.user.userId, 
+            band_leader : jwt_decode(localStorage.getItem("token")).user_id, 
             //image : this.ImageUpload,
-          })
-  
-          .then(response => {})
-          // .then(console.log(this.postBody))
-          // .then(console.log(response.postBody))
-          .catch(e => {
-            this.errors.push(e);
+          }).then(response => {
+            this.acceptInvitation(response.data.id)}
+          ).catch(e => {
+            console.error(e);
           });
   
       },
+
+      acceptInvitation(sigId) {
+          this.$store.dispatch('acceptInvitation', {sigId: sigId, isLeader:true}).then((res => {
+            alert('invitation succeed')
+            this.$router.push(`/band/${sigId}`)
+              
+            }), error => {
+                console.error("Got nothing from server. Prompt user to check internet connection and try again")
+            })
+      }
 }
 
 
