@@ -54,6 +54,11 @@ const AuthModule = {
           commit('setUser', newUser)
       }).catch((ex)=>{
         console.log(ex)
+        if("username" in ex.response.data){
+          alert(ex.response.data.username)
+        }else if("password1" in ex.response.data){
+          alert(ex.response.data.password1)
+        }
         commit('setLoading', false)
         commit('setError', ex)
       })
@@ -78,6 +83,7 @@ const AuthModule = {
           commit('setUser', newUser)
       }).catch((ex)=>{
         console.log(ex)
+        alert('비밀번호를 확인해 주세요')
         commit('setLoading', false)
         commit('setError', ex)
       })

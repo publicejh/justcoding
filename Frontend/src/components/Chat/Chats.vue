@@ -96,6 +96,7 @@
           console.log('createafdsfa: ', res)
           window.open('/#/chat/' + res.data.id, 'targetWindow',
             'location=no, scrollbars=yes, status=no, toolbar=no, menubar=no, resizable=yes, width=400, height=622, left=200, top=100')
+            this.$store.dispatch('loadChats', this.bandid)
         }), error => {
           console.error("Got nothing from server. Prompt user to check internet connection and try again")
         })
