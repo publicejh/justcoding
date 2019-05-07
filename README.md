@@ -43,10 +43,9 @@
 
 ## Contributor
 
-- [이정호]: (https://github.com/publicejh)
+- [이정호](https://github.com/publicejh) 
 
-- [이지영]: (https://github.com/jiyoung1202)
+- [이지영 ](https://github.com/jiyoung1202)
 
-- [송이현]: (https://github.com/Ihyun)
+- [송이현](https://github.com/Ihyun)
 
-  
