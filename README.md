@@ -45,7 +45,7 @@
 
 # Server Architecture
 
-![server_achitecture](C:\대외활동\스마일게이트_윈터데브캠프\server_achitecture.png)
+![server_achitecture] (./data/server_achitecture.png)
 
 
 
