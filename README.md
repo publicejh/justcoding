@@ -45,7 +45,7 @@
 
 # Server Architecture
 
-![server_achitecture] (./data/server_achitecture.png)
+![![server_achitecture]](data/server_achitecture.png)
 
 
 
