@@ -1,4 +1,8 @@
-# Badn형 그룹핑 SNS 서비스 - SIG
+---
+typora-root-url: data
+---
+
+# Band형 그룹핑 SNS 서비스 - SIG
 
 ------
 
@@ -21,9 +25,31 @@
 
 ## 폴더 구조
 
- 
+#### 서버(Backend)
 
-## 서버 아키텍쳐
+- Backend/AuthServer
+- Backend/ChatServer
+- Backend/FileServer
+- Backend/PlatformServer
+
+#### 프론트(Frontend)
+
+- 
+
+#### 자료
+
+- /doc : 발표자료
+- /data : 이미지
+
+#### 설치 패키지
+
+- /requirements.txt
+
+
+
+# Server Architecture
+
+![server_achitecture](C:\대외활동\스마일게이트_윈터데브캠프\server_achitecture.png)
 
 
 
@@ -45,7 +71,10 @@
 
 - [이정호](https://github.com/publicejh) 
 
-- [이지영 ](https://github.com/jiyoung1202)
+- [이지영](https://github.com/jiyoung1202) : Platform Server 개발, 
 
 - [송이현](https://github.com/Ihyun)
 
+
+## 시연영상
+https://youtu.be/KkDzQ6pFlMw
