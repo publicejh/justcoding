@@ -1,7 +1,3 @@
----
-typora-root-url: data
----
-
 # Band형 그룹핑 SNS 서비스 - SIG
 
 ------
