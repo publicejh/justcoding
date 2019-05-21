@@ -75,8 +75,14 @@
 
 
 
-
 ## 개발 환경& 프레임워크
+
+- mysql
+- Django
+- Django Channels
+- Django Restframework
+- vue.js
+- 
 
  
 
