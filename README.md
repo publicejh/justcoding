@@ -78,6 +78,7 @@ https://youtu.be/KkDzQ6pFlMw
 - **Auth Server(인증 서버)**
   - 회원가입 : 회원의 정보를 입력 받아 DB에 저장
   - 로그인/로그아웃 : 로그인 인증
+  - [인증 서버 개별 repo](https://github.com/publicejh/auth_server)
 - **Platform Server(플랫폼 서버)**
   - 게시물 작성 : 사진, 영상, 파일 업로드가 가능한 게시물 작성
   - 피드 : 각 밴드 내 게시물을 최신순으로 보여줌
@@ -85,14 +86,15 @@ https://youtu.be/KkDzQ6pFlMw
   - 밴드 개설
   - 밴드 사용자 초대 : 링크 이용
   - 밴드 멤버 확인 : 밴드 멤버 별 소속 멤버 리스트
+  - [플랫폼 서버 개별 repo](https://github.com/publicejh/sig_server)
 - **Chat Server(채팅서버)**
   - 각 밴드의 전체 채팅방 : 밴드당 전체 멤버 채팅 한 개 기본 개설
   - 1:1 채팅 : 밴드 내 멤버와의 개인 채팅
+  - [채팅 서버 개별 repo](https://github.com/publicejh/chat_server)
 - **File Server(파일서버)** 
   - 이미지 업로드
   - 캐시저장
-
-
+  - [파일 서버 개별 repo](https://github.com/publicejh/file_server)
 
  
 
