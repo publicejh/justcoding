@@ -21,7 +21,7 @@ django-js-asset==1.2.1
 django-redis==4.10.0
 django-rest-auth==0.9.3
 django-rest-swagger==2.2.0
-djangorestframework==3.9.0
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 hiredis==1.0.0
 hyperlink==18.0.0
